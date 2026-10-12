@@ -1,0 +1,228 @@
+/* Dream Journal — shared styles */
+:root {
+  --paper: #f5efe3;
+  --paper-deep: #ece3d1;
+  --card: #fbf7ef;
+  --ink: #2c2a33;
+  --ink-soft: #5d5866;
+  --ink-faint: #8f8879;
+  --rule: #d9cfbb;
+  --accent: #7a4b3a;
+  --shadow: 0 1px 2px rgba(60, 45, 30, 0.06), 0 6px 18px rgba(60, 45, 30, 0.07);
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.55), transparent 45%),
+    radial-gradient(circle at 85% 90%, rgba(210, 190, 160, 0.18), transparent 50%);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: "EB Garamond", Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+a { color: inherit; }
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 4rem 1.25rem 3rem;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.site-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2.6rem, 8vw, 4rem);
+  letter-spacing: 0.02em;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.site-subtitle {
+  font-style: italic;
+  color: var(--ink-soft);
+  margin: 0.6rem 0 0;
+}
+
+.flourish {
+  display: block;
+  margin: 1.5rem auto 0;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--ink-faint), transparent);
+  position: relative;
+}
+.flourish::after {
+  content: "☾";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -55%);
+  background: var(--paper);
+  padding: 0 0.6rem;
+  color: var(--ink-faint);
+  font-size: 1rem;
+}
+
+/* ---------- Card grid ---------- */
+.dream-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dream-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 1.5rem 1.5rem 1.25rem;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.dream-card:hover,
+.dream-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--ink-faint);
+  box-shadow: 0 2px 4px rgba(60, 45, 30, 0.08), 0 12px 28px rgba(60, 45, 30, 0.12);
+  outline: none;
+}
+
+.card-date {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.card-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0.35rem 0 0.6rem;
+}
+
+.card-preview {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.55;
+  margin: 0 0 1rem;
+  flex-grow: 1;
+}
+
+.mood {
+  align-self: flex-start;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--accent);
+  border-top: 1px solid var(--rule);
+  padding-top: 0.6rem;
+  width: 100%;
+}
+
+.empty {
+  text-align: center;
+  font-style: italic;
+  color: var(--ink-faint);
+  padding: 3rem 1rem;
+  border: 1px dashed var(--rule);
+  border-radius: 4px;
+}
+
+/* ---------- Dream page ---------- */
+.entry {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-block;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.back-link:hover { color: var(--ink); border-color: var(--ink-faint); }
+
+.entry-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.entry-date {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.entry-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 7vw, 3.2rem);
+  line-height: 1.15;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.entry-mood {
+  font-style: italic;
+  color: var(--accent);
+  margin: 0;
+}
+
+.entry-body p { margin: 0 0 1.3em; }
+
+/* Keep the dream text exactly as written: spaces and line breaks preserved */
+.entry-body.verbatim p { white-space: pre-wrap; }
+
+.entry-body p:first-of-type::first-letter {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  float: left;
+  font-size: 3.6em;
+  line-height: 0.85;
+  padding: 0.08em 0.1em 0 0;
+  color: var(--accent);
+}
+
+.entry-end {
+  text-align: center;
+  color: var(--ink-faint);
+  letter-spacing: 0.6em;
+  margin: 2.5rem 0 0;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--ink-faint);
+  margin-top: 4rem;
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  .page { padding-top: 2.75rem; }
+  .site-header { margin-bottom: 2.5rem; }
+}
